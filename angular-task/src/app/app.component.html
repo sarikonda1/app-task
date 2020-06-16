@@ -1,0 +1,106 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <div>
+        <h3> Contacts</h3>
+        <u (click)="onAdd()" class="float-right"> Add Contact</u>
+      </div>
+      <div>
+        <form class="form-inline my-2 my-lg-0">
+          <input [formControl]="searchController" class="form-control mr-sm-2" type="search" placeholder="Search"
+            aria-label="Search">
+          <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+        </form>
+      </div>
+      <div>
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center"
+            *ngFor="let user of filteredUsers;let i = index">
+            {{user?.firstName}}    {{user?.lastName}}
+
+            <span (click)="inClickAction(user)" class="glyphicon glyphicon-edit"></span>
+            <span (click)="inClickAction(user, false)" class="glyphicon glyphicon-remove"></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- <div class="col-sm">
+      One of three columns
+    </div> -->
+    <div class="col-sm border-left" >
+      <ng-container *ngIf="showForm">
+      <div class="row">
+        Add Contact
+        <div class="float-right">
+          <button type="reset" (click)="showForm = false" class="btn btn-danger">Cancel</button>
+          <button type="submit" (click)="onSubmit()" class="btn btn-success">Submit</button>
+        </div>
+      </div>
+        <form [formGroup]="userForm">
+          <div class="form-group">
+            <label for="exampleInputEmail1">First Name</label>
+            <input formControlName="firstName" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputPassword1">Last Name</label>
+            <input  formControlName="lastName" type="text" class="form-control" >
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputPassword1">Company</label>
+            <input  formControlName="company" type="text" class="form-control" >
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputPassword1">Email</label>
+            <input formControlName="email" type="email" class="form-control" >
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputPassword1">Primary Mobile Number</label>
+            <input formControlName="primaryMobileNumber" type="text" class="form-control" >
+          </div>
+          <div class="row" *ngIf="!userForm.value.alternateMobileNumber" (click)="onclickMore()">More</div>
+          <div class="form-group" *ngIf="userForm.value.alternateMobileNumber">
+            <label for="exampleInputPassword1">Alternate Mobile Number</label>
+            <input formControlName="alternateMobileNumber" type="text" class="form-control" >
+          </div>
+
+
+          <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+        </form>
+      </ng-container>
+      
+    </div>
+  </div>
+
+
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

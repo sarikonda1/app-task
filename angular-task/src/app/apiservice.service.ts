@@ -25,6 +25,6 @@ export class ApiserviceService {
     data);
   }
   delete(id): Observable<any> {
-    return this.httpClient.delete<any>(`${this.basePath}` + 'api/delete' + id);
+    return this.httpClient.delete<any>(`${this.basePath}` + 'api/delete/' + id);
   }
 }

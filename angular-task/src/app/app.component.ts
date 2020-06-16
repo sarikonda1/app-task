@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
       const ur = this.users.find(e => e.id === user.id);
       this.userForm.patchValue(ur);
     } else {
-      this.apiserviceService.delete(user.id)
+      this.apiserviceService.delete(user._id)
       .subscribe(res => {
         this.getUsers();
       }, err => this.errorResponse(err));
